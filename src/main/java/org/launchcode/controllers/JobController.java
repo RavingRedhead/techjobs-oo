@@ -29,7 +29,7 @@ public class JobController {
 
         // TODO #1 - get the Job with the given ID and pass it into the view
         Job job = jobData.findById(id);
-        model.addAttribute("Job", job);
+        model.addAttribute("job", job);
         return "job-detail";
     }
 
@@ -57,7 +57,7 @@ public class JobController {
 
 
 
-        return "redirect:/job";
+        return "redirect:/job?id=" + newJob.getId();
 
         // TODO #6 - Validate the JobForm model, and if valid, create a
         // new Job and add it to the jobData data store. Then
