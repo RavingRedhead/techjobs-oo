@@ -10,7 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import javax.validation.Valid;
 
@@ -40,11 +40,10 @@ public class JobController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String add(Model model, @Valid JobForm jobForm, Errors errors, RedirectAttributes attributes) {
+    public String add(Model model, @Valid JobForm jobForm, Errors errors) {
         if (errors.hasErrors()) {
             return "new-job";
         }
-
 
         String jobName = jobForm.getName();
         Employer jobEmployer = jobData.getEmployers().findById(jobForm.getEmployerId());
@@ -56,7 +55,7 @@ public class JobController {
 
         jobData.add(newJob);
 
-        attributes.addAttribute("id", newJob.getId());
+
 
         return "redirect:/job";
 
